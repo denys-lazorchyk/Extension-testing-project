@@ -14,14 +14,10 @@ blur_me.addEventListener("click", (e) => {
   if (blur_me_word.value) {
     let message = `${blur_me_word.value}`;
 
+    done.textContent = "DONE!!!";
+
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      chrome.tabs.sendMessage(
-        tabs[0].id,
-        { blurWord: message },
-        function (response) {
-          console.log(response.progress);
-        }
-      );
+      chrome.tabs.sendMessage(tabs[0].id, { blurWord: message });
     });
   } else {
     done.textContent = "Empty?";
@@ -33,6 +29,5 @@ blur_me.addEventListener("click", (e) => {
 });
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  done.textContent = "DONE!!!";
   clearDone();
 });
