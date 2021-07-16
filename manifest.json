@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+  "name": "Blur me",
+  "version": "1.0",
+  "description": "Blur any kind of word you want on this website, forever...",
+  "short_name": "Blur your word!",
+  "permissions": ["activeTab", "storage", "<all_urls>", "runtime"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["background.js"]
+    }
+  ],
+  "background": {
+    "scripts": ["myScript.js"],
+    "css": ["background.css"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_title": "Does a thing when you do a thing",
+    "default_icon": "./imgs/icon.png",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "./imgs/icon.png",
+    "32": "./imgs/icon.png",
+    "48": "./imgs/icon.png"
+  },
+  "externally_connectable": {
+    "matches": ["<all_urls>"]
+  }
+}
